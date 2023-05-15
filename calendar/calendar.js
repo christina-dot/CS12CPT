@@ -1,14 +1,19 @@
 
 
-let startDay = 7;   // Which day of the week we will start on
+let startDay = 2;   // Which day of the week we will start on
 let days = 31;  // Number of days in the specific month
 let endDay;     // This variable will store the day which the month ended
 let month = 5;  // This variable will store the current month
 
 // This class will store the days of each month
 class MonthDays {
-    constructor (numDays) {
-        numDays = this.numDays;
+    constructor (month, numDays) {
+        this.month = month;
+        this.numDays = numDays;
+    }
+
+    getMonth() {
+        return this.month;
     }
 
     getNumDays() {
@@ -17,36 +22,39 @@ class MonthDays {
 }
 
 let monthDaysList = [];
+let monthNamesList = [];
 
 // Creating all the month objects
-let januaryDays = new MonthDays(31);
-monthDaysList.push(januaryDays.getNumDays());
+let january = new MonthDays("January", 31);
+let february = new MonthDays("February", 28);
+let march = new MonthDays("March", 31);
+let april = new MonthDays("April", 30);
+let may = new MonthDays("May", 31);
+let june = new MonthDays("June", 30);
+let july = new MonthDays("July", 31);
+let august = new MonthDays("August", 31);
+let september = new MonthDays("September", 30);
+let october = new MonthDays("October", 31);
+let november = new MonthDays("November", 30);
+let december = new MonthDays("December", 31);
 
-console.log(januaryDays.getNumDays());
-console.log(monthDaysList);
+function objectInfoStorer (object) {
+    monthDaysList.push(object.getNumDays());
+    monthNamesList.push(object.getMonth());
+}
 
-let februaryDays = new MonthDays(28);
-monthDaysList.push(februaryDays.getNumDays());
-let marchDays = new MonthDays(31);
-monthDaysList.push(marchDays.getNumDays());
-let aprilDays = new MonthDays(30);
-monthDaysList.push(aprilDays.getNumDays());
-let mayDays = new MonthDays(31);
-monthDaysList.push(mayDays.getNumDays());
-let juneDays = new MonthDays(30);
-monthDaysList.push(juneDays.getNumDays());
-let julyDays = new MonthDays(31);
-monthDaysList.push(julyDays.getNumDays());
-let augustDays = new MonthDays(31);
-monthDaysList.push(augustDays.getNumDays());
-let septemberDays = new MonthDays(30);
-monthDaysList.push(septemberDays.getNumDays());
-let octoberDays = new MonthDays(31);
-monthDaysList.push(octoberDays.getNumDays());
-let novemberDays = new MonthDays(30);
-monthDaysList.push(novemberDays.getNumDays());
-let decemberDays = new MonthDays(31);
-monthDaysList.push(decemberDays.getNumDays());
+objectInfoStorer(january);
+objectInfoStorer(february);
+objectInfoStorer(march);
+objectInfoStorer(april);
+objectInfoStorer(may);
+objectInfoStorer(june);
+objectInfoStorer(july);
+objectInfoStorer(august);
+objectInfoStorer(september);
+objectInfoStorer(october);
+objectInfoStorer(november);
+objectInfoStorer(december);
 
 let targetCell;             // This variable will store the html element that we want to target
 let startPrinting = false;  // This variable stores whether or not to change the html element
@@ -62,7 +70,15 @@ nextMonthArrow.addEventListener("click", goNextMonth);
 // This function will create the calendar for the next month when the next arrow is pressed
 function goNextMonth() {
 
-    console.log(monthDaysList);
+    // First we clear the calendar
+    for (let i = 1; i <= 6; i++) {
+
+        for (let j = 1; j <= 7; j++) {
+            targetCell = document.querySelector("#c" + i + j);
+            targetCell.innerHTML = ""; 
+        }
+        
+    }
 
     // Setting the first day of the month
     if (endDay == 7) {
@@ -71,14 +87,22 @@ function goNextMonth() {
         startDay = endDay += 1;
     }
 
+    console.log(endDay);
+    console.log(startDay);
+
     if (month == 12) {
         month = 1;
     } else {
         month += 1;
     }
+
+    let targetMonth = document.querySelector("#calendarMonth");
+    targetMonth.innerHTML = monthNamesList[month-1];
+
     days = monthDaysList[month-1];
 
     console.log(days);
+    console.log(month);
 
     dayToPrint = 1;
 
@@ -125,6 +149,7 @@ function createCalendar() {
                 if (dayToPrint == days) {
                     startPrinting = false;
                     endDay = j;
+                    break;
                 } else {
                     dayToPrint += 1;
                 }
@@ -141,6 +166,7 @@ function createCalendar() {
                 if (dayToPrint == days) {
                     startPrinting = false;
                     endDay = j;
+                    break;
                 } else {
                     dayToPrint += 1;
                 }
@@ -155,6 +181,11 @@ function createCalendar() {
                     dayToPrint += 1;
                 }
             }
+        }
+
+        // To stop the second loop from continuing to loop
+        if (startPrinting == false) {
+            break;
         }
     }
 }
