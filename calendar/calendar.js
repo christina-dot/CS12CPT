@@ -1,91 +1,159 @@
-// class Months {
-//     January: 31,
 
-// }
 
-// let firstDay = "Sunday";
-// let days = 31;
+let startDay = 7;   // Which day of the week we will start on
+let days = 31;  // Number of days in the specific month
+let endDay;     // This variable will store the day which the month ended
+let month = 5;  // This variable will store the current month
 
-// document.write("<div id='calendarContainer'>");
-// document.write("<table>");
+// This class will store the days of each month
+class MonthDays {
+    constructor (numDays) {
+        numDays = this.numDays;
+    }
 
-// if (firstDay == "Sunday") {
-//     for (let i = 1; i <= days; i++) {
-//         if (i % 7 == 1) {
-//             document.write("<tr>");
-//         }
+    getNumDays() {
+        return this.numDays;
+    }
+}
 
-//         document.write("<td>" + i + "</td>");
+let monthDaysList = [];
 
-//         if (i % 7 == 0) {
-//             document.write("</tr>");
-//         } else if (i == days) {
-//             document.write("</tr>");
-//         }
+// Creating all the month objects
+let januaryDays = new MonthDays(31);
+monthDaysList.push(januaryDays.getNumDays());
 
-//     }
-// }
+console.log(januaryDays.getNumDays());
+console.log(monthDaysList);
 
-// document.write("</table>");
-// document.write("</div>");
+let februaryDays = new MonthDays(28);
+monthDaysList.push(februaryDays.getNumDays());
+let marchDays = new MonthDays(31);
+monthDaysList.push(marchDays.getNumDays());
+let aprilDays = new MonthDays(30);
+monthDaysList.push(aprilDays.getNumDays());
+let mayDays = new MonthDays(31);
+monthDaysList.push(mayDays.getNumDays());
+let juneDays = new MonthDays(30);
+monthDaysList.push(juneDays.getNumDays());
+let julyDays = new MonthDays(31);
+monthDaysList.push(julyDays.getNumDays());
+let augustDays = new MonthDays(31);
+monthDaysList.push(augustDays.getNumDays());
+let septemberDays = new MonthDays(30);
+monthDaysList.push(septemberDays.getNumDays());
+let octoberDays = new MonthDays(31);
+monthDaysList.push(octoberDays.getNumDays());
+let novemberDays = new MonthDays(30);
+monthDaysList.push(novemberDays.getNumDays());
+let decemberDays = new MonthDays(31);
+monthDaysList.push(decemberDays.getNumDays());
 
-let startDay = 5;
-let days = 31;
+let targetCell;             // This variable will store the html element that we want to target
+let startPrinting = false;  // This variable stores whether or not to change the html element
+let dayToPrint = 1;         // This variable stores the day that is currently printing
 
-// let targetID = 1;
 
-// let targetCell = document.querySelector("#one" + targetID);
-// targetCell.innerHTML = "2013";
+let nextMonthArrow = document.querySelector("#nextMonthArrow");
 
-let targetCell;
-let startPrinting = false;
-let dayToPrint = 1;
+createCalendar();
 
-for (let i = 1; i <= 6; i++) {
-    if (i == 1) {
-        for (let j = 1; j <= 7; j++) {
-            if (j == startDay) {
-                startPrinting = true;
-            }
+nextMonthArrow.addEventListener("click", goNextMonth);
 
-            if (startPrinting == true) {
-                targetCell = document.querySelector("#c" + i + j);
-                targetCell.innerHTML = dayToPrint;
-                dayToPrint += 1;
-            }
-        }
-    } else if (i == 5) {
-        for (let j = 1; j <= 7; j++) {
-            if (startPrinting == true) {
-                targetCell = document.querySelector("#c" + i + j);
-                targetCell.innerHTML = dayToPrint;
-            }
-            
-            if (dayToPrint == days) {
-                startPrinting = false;
-            } else {
-                dayToPrint += 1;
-            }
-        }
-    } else if (i == 6) {
-        for (let j = 1; j <= 7; j++) {
-            if (startPrinting == true) {
-                targetCell = document.querySelector("#c" + i + j);
-                targetCell.innerHTML = dayToPrint;
-            }
+// This function will create the calendar for the next month when the next arrow is pressed
+function goNextMonth() {
 
-            if (dayToPrint == days) {
-                startPrinting = false;
-            } else {
-                dayToPrint += 1;
-            }
-        }
+    console.log(monthDaysList);
+
+    // Setting the first day of the month
+    if (endDay == 7) {
+        startDay = 1;
     } else {
-        for (let j = 1; j <= 7; j++) {
-            if (startPrinting == true) {
-                targetCell = document.querySelector("#c" + i + j);
-                targetCell.innerHTML = dayToPrint;
-                dayToPrint += 1;
+        startDay = endDay += 1;
+    }
+
+    if (month == 12) {
+        month = 1;
+    } else {
+        month += 1;
+    }
+    days = monthDaysList[month-1];
+
+    console.log(days);
+
+    dayToPrint = 1;
+
+    createCalendar();
+
+}
+
+// This function will create a calendar based on the start day and number of days within the month
+function createCalendar() {
+
+    // This for loop controls the rows of the calendar
+    for (let i = 1; i <= 6; i++) {
+
+        // This targets the first week
+        if (i == 1) {
+
+            // This for loop loops through each day of the week
+            for (let j = 1; j <= 7; j++) {
+
+                // If the day of the week is the same as the day of the week of the start day, then this if statement tells the function to start targeting the html elements
+                if (j == startDay) {
+                    startPrinting = true;
+                }
+                
+                // If we want to print, we target the ID using the week and day (row/column)
+                if (startPrinting == true) {
+                    targetCell = document.querySelector("#c" + i + j);
+                    targetCell.innerHTML = dayToPrint; 
+                    dayToPrint += 1;
+                }
+            }
+        } else if (i == 5) {
+            // This checks when the calendar ends on row 5
+
+            for (let j = 1; j <= 7; j++) {
+
+                // This checks if we still want to target html elements
+                if (startPrinting == true) {
+                    targetCell = document.querySelector("#c" + i + j);
+                    targetCell.innerHTML = dayToPrint;
+                }
+                
+                // If we have hit the last day, we check if dayToPrint lines up with the number of days in the month. If it is the same, then we know to stop printing, if not, then we add a day and keep going
+                if (dayToPrint == days) {
+                    startPrinting = false;
+                    endDay = j;
+                } else {
+                    dayToPrint += 1;
+                }
+            }
+        } else if (i == 6) {
+            // This is the same as the last condition except checking for row 6 instead
+
+            for (let j = 1; j <= 7; j++) {
+                if (startPrinting == true) {
+                    targetCell = document.querySelector("#c" + i + j);
+                    targetCell.innerHTML = dayToPrint;
+                }
+    
+                if (dayToPrint == days) {
+                    startPrinting = false;
+                    endDay = j;
+                } else {
+                    dayToPrint += 1;
+                }
+            }
+        } else {
+            // Every other week will just print as usual
+
+            for (let j = 1; j <= 7; j++) {
+                if (startPrinting == true) {
+                    targetCell = document.querySelector("#c" + i + j);
+                    targetCell.innerHTML = dayToPrint;
+                    dayToPrint += 1;
+                }
             }
         }
     }
