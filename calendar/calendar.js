@@ -4,6 +4,7 @@ let startDay = 2;   // Which day of the week we will start on
 let days = 31;  // Number of days in the specific month
 let endDay;     // This variable will store the day which the month ended
 let month = 5;  // This variable will store the current month
+let year = 2023; // This variable will store the current year
 
 // This class will store the days of each month
 class MonthDays {
@@ -90,22 +91,34 @@ function goNextMonth() {
     console.log(endDay);
     console.log(startDay);
 
+    // Next changing the month
     if (month == 12) {
         month = 1;
+        year += 1;
     } else {
         month += 1;
     }
 
+    console.log(year);
+
+    // Changing the Month title
     let targetMonth = document.querySelector("#calendarMonth");
     targetMonth.innerHTML = monthNamesList[month-1];
 
+    // Setting the number of days for calendar printing
     days = monthDaysList[month-1];
+    // Taking into account leap years
+    if (month == 2 && year % 4 == 0) {
+        days += 1;
+    }
 
     console.log(days);
     console.log(month);
 
+    // Reseting the counter
     dayToPrint = 1;
 
+    // Creating the calendar
     createCalendar();
 
 }
