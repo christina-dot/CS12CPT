@@ -1,4 +1,5 @@
 
+// =================================== Global Varibales
 
 let startDay = 2;   // Which day of the week we will start on
 let days = 31;  // Number of days in the specific month
@@ -6,8 +7,19 @@ let endDay;     // This variable will store the day which the month ended
 let month = 5;  // This variable will store the current month
 let year = 2023; // This variable will store the current year
 
+let monthDaysList = [];     // This variable holds the number of days of each month
+let monthNamesList = [];    // This variable holds the names of the months
+
+let targetCell;             // This variable will store the html element that we want to target
+let startPrinting = false;  // This variable stores whether or not to change the html element
+let dayToPrint = 1;         // This variable stores the day that is currently printing
+
+
+// =================================== Month Information Creation and Storage
+
 // This class will store the days of each month
 class MonthDays {
+    // Each object will contain the name of the month and the number of days within the month
     constructor (month, numDays) {
         this.month = month;
         this.numDays = numDays;
@@ -21,9 +33,6 @@ class MonthDays {
         return this.numDays;
     }
 }
-
-let monthDaysList = [];
-let monthNamesList = [];
 
 // Creating all the month objects
 let january = new MonthDays("January", 31);
@@ -39,11 +48,13 @@ let october = new MonthDays("October", 31);
 let november = new MonthDays("November", 30);
 let december = new MonthDays("December", 31);
 
+// This function will add the information of a li
 function objectInfoStorer (object) {
     monthDaysList.push(object.getNumDays());
     monthNamesList.push(object.getMonth());
 }
 
+// Now storing the information for each month
 objectInfoStorer(january);
 objectInfoStorer(february);
 objectInfoStorer(march);
@@ -57,16 +68,19 @@ objectInfoStorer(october);
 objectInfoStorer(november);
 objectInfoStorer(december);
 
-let targetCell;             // This variable will store the html element that we want to target
-let startPrinting = false;  // This variable stores whether or not to change the html element
-let dayToPrint = 1;         // This variable stores the day that is currently printing
 
-
+//  =================================== Document Targeting Global Variables
 let nextMonthArrow = document.querySelector("#nextMonthArrow");
+
+
+//  =================================== Main Code
 
 createCalendar();
 
 nextMonthArrow.addEventListener("click", goNextMonth);
+
+
+//  =================================== Functions
 
 // This function will create the calendar for the next month when the next arrow is pressed
 function goNextMonth() {
@@ -95,6 +109,9 @@ function goNextMonth() {
     if (month == 12) {
         month = 1;
         year += 1;
+
+        let targetYear = document.querySelector("#calendarYear");
+        targetYear.innerHTML = year;
     } else {
         month += 1;
     }

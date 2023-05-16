@@ -43,6 +43,55 @@ body {
     background-color: red;
     width: 85%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#header {
+    background-color: #efe6ff;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#nextMonthArrow {
+    width: 25px;
+}
+
+#calendarContainer {
+    width: 100%;
+    height: 80%;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+}
+
+table, th, td {
+    border: 2px black solid;
+    border-collapse: collapse;
+}
+
+tr {
+    height: 15%;
+    width: 100%;
+}
+
+#headerRow {
+    height: 10%;
+    width: 100%;
+}
+
+td, th {
+    width: 14.2857142857%;
+}
+
+td {
+    vertical-align: top;
+    text-align: left;
 }
 
 /* #calendarContainer {
