@@ -70,6 +70,7 @@ objectInfoStorer(december);
 
 
 //  =================================== Document Targeting Global Variables
+let backMonthArrow = document.querySelector("#backMonthArrow");
 let nextMonthArrow = document.querySelector("#nextMonthArrow");
 
 
@@ -77,10 +78,126 @@ let nextMonthArrow = document.querySelector("#nextMonthArrow");
 
 createCalendar();
 
+backMonthArrow.addEventListener("click", goPreviousMonth);
 nextMonthArrow.addEventListener("click", goNextMonth);
 
 
+
 //  =================================== Functions
+
+// This function will create the calendar for the previous month when the back arrow is pressed
+function goPreviousMonth() {
+
+    // First we clear the calendar
+    for (let i = 1; i <= 6; i++) {
+
+        for (let j = 1; j <= 7; j++) {
+            targetCell = document.querySelector("#c" + i + j);
+            targetCell.innerHTML = ""; 
+        }
+        
+    }
+
+    // Setting the last day of the month
+    if (startDay == 1) {
+        endDay = 7;
+    } else {
+        endDay = startDay - 1;
+    }
+
+    // Next changing the month and possibly the year
+    if (month == 1) {
+        month = 12;
+        year -= 1;
+
+        let targetYear = document.querySelector("#calendarYear");
+        targetYear.innerHTML = year;
+    } else {
+        month -= 1;
+    }
+
+    // Changing the Month title
+    let targetMonth = document.querySelector("#calendarMonth");
+    targetMonth.innerHTML = monthNamesList[month-1];
+
+    // Setting the number of days for calendar printing
+    days = monthDaysList[month-1];
+    // Taking into account leap years
+    if (month == 2 && year % 4 == 0) {
+        days += 1;
+    }
+
+    // Finding the Start Day of the previous month
+    console.log(startDay);
+    let tempDays = days;
+    for (let i = 6; i >= 1; i--) {
+        // Last Week
+        if (i == 6) {
+            for (let j = endDay; j >= 1; j--) {
+                tempDays -= 1;
+            }
+        } else if (i == 3) {
+            // Takes into account a 28-week month that starts on Sunday
+            
+            for (let j = 7; j >= 1; j--) {
+                if (tempDays > 1) {
+                    tempDays -= 1;
+                    if (tempDays == 1) {
+                        startDay = 7;
+                    }
+                } else {
+                    startDay = j;
+                    break;
+                }
+            }
+        } else if (i == 2) {
+            // Checks if the first ends on the second week
+
+            for (let j = 7; j >= 1; j--) {
+                if (tempDays > 1) {
+                    tempDays -= 1;
+                    
+                    // Takes into account when the loop ends on Sunday where tempDays equals 1 and still needs to loop through but will encounter the if/break statement at the end of the greater for loop.
+                    if (tempDays == 1) {
+                        startDay = 7;
+                    }
+                } else {
+                    startDay = j;
+                    break;
+                }
+            }
+        } else if (i == 1) {
+            // Checks if the first ends on the first week
+
+            for (let j = 7; j >= 1; j--) {
+                if (tempDays > 1) {
+                    tempDays -= 1;
+                    if (tempDays == 1) {
+                        startDay = 7;
+                    }
+                } else {
+                    startDay = j;
+                    break;
+                }
+            }
+        } else {
+            for (let j = 7; j >= 1; j--) {
+                tempDays -= 1;
+            }
+        }
+
+        if (tempDays <= 1) {
+            break;
+        }
+    }
+
+    // Reseting the counter
+    dayToPrint = 1;
+
+    // Creating the calendar
+    createCalendar();
+
+}
 
 // This function will create the calendar for the next month when the next arrow is pressed
 function goNextMonth() {
@@ -99,11 +216,8 @@ function goNextMonth() {
     if (endDay == 7) {
         startDay = 1;
     } else {
-        startDay = endDay += 1;
+        startDay = endDay + 1;
     }
-
-    console.log(endDay);
-    console.log(startDay);
 
     // Next changing the month
     if (month == 12) {
@@ -116,8 +230,6 @@ function goNextMonth() {
         month += 1;
     }
 
-    console.log(year);
-
     // Changing the Month title
     let targetMonth = document.querySelector("#calendarMonth");
     targetMonth.innerHTML = monthNamesList[month-1];
@@ -128,9 +240,6 @@ function goNextMonth() {
     if (month == 2 && year % 4 == 0) {
         days += 1;
     }
-
-    console.log(days);
-    console.log(month);
 
     // Reseting the counter
     dayToPrint = 1;
@@ -161,6 +270,26 @@ function createCalendar() {
                 if (startPrinting == true) {
                     targetCell = document.querySelector("#c" + i + j);
                     targetCell.innerHTML = dayToPrint; 
+                    dayToPrint += 1;
+                }
+            }
+        } else if (i == 4) {
+            // This checks when the calendar ends on row 4
+
+            for (let j = 1; j <= 7; j++) {
+
+                // This checks if we still want to target html elements
+                if (startPrinting == true) {
+                    targetCell = document.querySelector("#c" + i + j);
+                    targetCell.innerHTML = dayToPrint;
+                }
+                
+                // If we have hit the last day, we check if dayToPrint lines up with the number of days in the month. If it is the same, then we know to stop printing, if not, then we add a day and keep going
+                if (dayToPrint == days) {
+                    startPrinting = false;
+                    endDay = j;
+                    break;
+                } else {
                     dayToPrint += 1;
                 }
             }

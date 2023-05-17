@@ -51,18 +51,27 @@ body {
 #header {
     background-color: #efe6ff;
     width: 100%;
-    height: 20%;
+    height: 10%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-#nextMonthArrow {
+#arrowBox {
+    margin-left: 50px;
+}
+
+#nextMonthArrow, #backMonthArrow {
     width: 25px;
+}
+
+#calendarYearBox {
+    margin-right: 50px;
 }
 
 #calendarContainer {
     width: 100%;
-    height: 80%;
+    height: 90%;
 }
 
 table {
