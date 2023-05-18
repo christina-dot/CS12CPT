@@ -81,6 +81,13 @@ createCalendar();
 backMonthArrow.addEventListener("click", goPreviousMonth);
 nextMonthArrow.addEventListener("click", goNextMonth);
 
+document.addEventListener("click", function(e){
+    console.log(e.target.innerHTML);
+    if (e.target.innerHTML == 11){
+        console.log("yes");
+    }
+})
+
 
 
 //  =================================== Functions
