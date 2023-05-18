@@ -49,25 +49,34 @@ let november = new MonthDays("November", 30);
 let december = new MonthDays("December", 31);
 
 // This function will add the information of a li
-function objectInfoStorer (object) {
+function monthInfoStorer (object) {
     monthDaysList.push(object.getNumDays());
     monthNamesList.push(object.getMonth());
 }
 
 // Now storing the information for each month
-objectInfoStorer(january);
-objectInfoStorer(february);
-objectInfoStorer(march);
-objectInfoStorer(april);
-objectInfoStorer(may);
-objectInfoStorer(june);
-objectInfoStorer(july);
-objectInfoStorer(august);
-objectInfoStorer(september);
-objectInfoStorer(october);
-objectInfoStorer(november);
-objectInfoStorer(december);
+monthInfoStorer(january);
+monthInfoStorer(february);
+monthInfoStorer(march);
+monthInfoStorer(april);
+monthInfoStorer(may);
+monthInfoStorer(june);
+monthInfoStorer(july);
+monthInfoStorer(august);
+monthInfoStorer(september);
+monthInfoStorer(october);
+monthInfoStorer(november);
+monthInfoStorer(december);
 
+
+//  =================================== Calendar Task Information
+
+// These lists will contain all the information for each calendar task
+
+let taskDay = [];
+let taskMonth = [];
+let taskYear = [];
+let taskTitles = [];
 
 //  =================================== Document Targeting Global Variables
 let backMonthArrow = document.querySelector("#backMonthArrow");
@@ -76,21 +85,36 @@ let nextMonthArrow = document.querySelector("#nextMonthArrow");
 
 //  =================================== Main Code
 
-createCalendar();
+createCalendar(); // Creates the calendar when the page is first opened
 
+
+// Event listeners for when the previous and next month buttons are pressed
 backMonthArrow.addEventListener("click", goPreviousMonth);
 nextMonthArrow.addEventListener("click", goNextMonth);
 
+
+// Event listener for when the user clicks on a calendar cell to create an event
 document.addEventListener("click", function(e){
-    console.log(e.target.innerHTML);
-    if (e.target.innerHTML == 11){
-        console.log("yes");
+    if (e.target.innerHTML >= 1 && e.target.innerHTML <= days){
+        taskCreation(e.target.innerHTML);
     }
 })
 
 
 
 //  =================================== Functions
+
+function taskCreation(day) {
+    let taskTitle = prompt("Please enter a title for your task: ");
+
+    taskDay.push(day);
+    taskMonth.push(month);
+    taskYear.push(year);
+    taskTitle.push(taskTitle);
+
+
+
+}
 
 // This function will create the calendar for the previous month when the back arrow is pressed
 function goPreviousMonth() {
