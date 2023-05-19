@@ -308,13 +308,13 @@ function createCalendar() {
                 
                 // If we want to print, we target the ID using the week and day (row/column)
                 if (startPrinting == true) {
-                    taskIndexDay = taskDay.indexOf(dayToPrint);
+                    let checkTask = taskChecking(dayToPrint, month, year, taskDay, taskMonth, taskYear);
                     targetCell = document.querySelector("#c" + i + j);
 
-                    console.log(taskIndexDay);
+                    console.log(checkTask);
 
-                    if (taskMonth[taskIndexDay] == month && taskYear[taskIndexDay] == year) {
-                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[taskIndexDay] + "</p></div>";
+                    if (checkTask >= 0) {
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p></div>";
                     } else {
                         targetCell.innerHTML = dayToPrint;
                     } 
@@ -329,13 +329,13 @@ function createCalendar() {
 
                 // This checks if we still want to target html elements
                 if (startPrinting == true) {
-                    taskIndexDay = taskDay.indexOf(dayToPrint);
+                    let checkTask = taskChecking(dayToPrint, month, year, taskDay, taskMonth, taskYear);
                     targetCell = document.querySelector("#c" + i + j);
 
-                    console.log(taskIndexDay);
+                    console.log(checkTask);
 
-                    if (taskMonth[taskIndexDay] == month && taskYear[taskIndexDay] == year) {
-                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[taskIndexDay] + "</p></div>";
+                    if (checkTask  >= 0) {
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p></div>";
                     } else {
                         targetCell.innerHTML = dayToPrint;
                     } 
@@ -357,13 +357,13 @@ function createCalendar() {
 
                 // This checks if we still want to target html elements
                 if (startPrinting == true) {
-                    taskIndexDay = taskDay.indexOf(dayToPrint);
+                    let checkTask = taskChecking(dayToPrint, month, year, taskDay, taskMonth, taskYear);
                     targetCell = document.querySelector("#c" + i + j);
 
-                    console.log(taskIndexDay);
+                    console.log(checkTask);
 
-                    if (taskMonth[taskIndexDay] == month && taskYear[taskIndexDay] == year) {
-                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[taskIndexDay] + "</p></div>";
+                    if (checkTask >= 0) {
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p></div>";
                     } else {
                         targetCell.innerHTML = dayToPrint;
                     } 
@@ -383,13 +383,13 @@ function createCalendar() {
 
             for (let j = 1; j <= 7; j++) {
                 if (startPrinting == true) {
-                    taskIndexDay = taskDay.indexOf(dayToPrint);
+                    let checkTask = taskChecking(dayToPrint, month, year, taskDay, taskMonth, taskYear);
                     targetCell = document.querySelector("#c" + i + j);
 
-                    console.log(taskIndexDay);
+                    console.log(checkTask);
 
-                    if (taskMonth[taskIndexDay] == month && taskYear[taskIndexDay] == year) {
-                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[taskIndexDay] + "</p></div>";
+                    if (checkTask >= 0) {
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p></div>";
                     } else {
                         targetCell.innerHTML = dayToPrint;
                     } 
@@ -405,16 +405,15 @@ function createCalendar() {
             }
         } else {
             // Every other week will just print as usual
-
             for (let j = 1; j <= 7; j++) {
                 if (startPrinting == true) {
-                    taskIndex = taskDay.indexOf(dayToPrint);
+                    let checkTask = taskChecking(dayToPrint, month, year, taskDay, taskMonth, taskYear);
                     targetCell = document.querySelector("#c" + i + j);
 
-                    console.log(taskIndex);
+                    console.log(checkTask);
 
-                    if (taskMonth[taskIndex] == month && taskYear[taskIndex] == year) {
-                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[taskIndex] + "</p></div>";
+                    if (checkTask >= 0) {
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p></div>";
                     } else {
                         targetCell.innerHTML = dayToPrint;
                     } 
@@ -429,4 +428,54 @@ function createCalendar() {
             break;
         }
     }
+}
+
+
+// This function will check if the day being printed has an event on it
+function taskChecking(day, month, year, taskDays, taskMonths, taskYears) {
+    
+    let tempIndex = -1;
+    let tempIndiciesDay = [];
+    let tempIndiciesMonth = [];
+    let tempIndiciesYear = [];
+    let indexReturn = -5;
+
+    while (true) {
+        tempIndex = taskDays.indexOf(day, tempIndex + 1);
+        if(tempIndex != -1) {
+            tempIndiciesDay.push(tempIndex);
+        } else {
+            break;
+        }
+    }
+
+    tempIndex = -1;
+
+    while (true) {
+        tempIndex = taskMonths.indexOf(month, tempIndex + 1);
+        if(tempIndex != -1) {
+            tempIndiciesMonth.push(tempIndex);
+        } else {
+            break;
+        }
+    }
+
+    tempIndex = -1;
+
+    while (true) {
+        tempIndex = taskYears.indexOf(year, tempIndex + 1);
+        if(tempIndex != -1) {
+            tempIndiciesYear.push(tempIndex);
+        } else {
+            break;
+        }
+    }
+
+    for (let i = 0; i < tempIndiciesDay.length; i++) {
+        if (tempIndiciesMonth.includes(tempIndiciesDay[i]) && tempIndiciesYear.includes(tempIndiciesDay[i])) {
+            indexReturn = tempIndiciesDay[i];
+        }
+    }
+
+    return indexReturn;
 }
