@@ -103,6 +103,12 @@ td {
     text-align: left;
 }
 
+.taskBox {
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: #efe6ff;
+}
+
 /* #calendarContainer {
     width: 50%;
     height: 50%;

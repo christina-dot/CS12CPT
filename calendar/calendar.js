@@ -14,6 +14,11 @@ let targetCell;             // This variable will store the html element that we
 let startPrinting = false;  // This variable stores whether or not to change the html element
 let dayToPrint = 1;         // This variable stores the day that is currently printing
 
+// These variables store indicies of any values within arrays that match up with the information of tasks
+let taskIndexDay;
+let taskIndexMonth;
+let taskIndexYear;
+
 
 // =================================== Month Information Creation and Storage
 
@@ -96,7 +101,7 @@ nextMonthArrow.addEventListener("click", goNextMonth);
 // Event listener for when the user clicks on a calendar cell to create an event
 document.addEventListener("click", function(e){
     if (e.target.innerHTML >= 1 && e.target.innerHTML <= days){
-        taskCreation(e.target.innerHTML);
+        taskCreation(parseInt(e.target.innerHTML), e.target);
     }
 })
 
@@ -104,15 +109,15 @@ document.addEventListener("click", function(e){
 
 //  =================================== Functions
 
-function taskCreation(day) {
+function taskCreation(day, target) {
     let taskTitle = prompt("Please enter a title for your task: ");
 
     taskDay.push(day);
     taskMonth.push(month);
     taskYear.push(year);
-    taskTitle.push(taskTitle);
+    taskTitles.push(taskTitle);
 
-
+    target.innerHTML = day + "<div class='taskBox'><p>" + taskTitle + "</p></div>";
 
 }
 
@@ -159,7 +164,6 @@ function goPreviousMonth() {
     }
 
     // Finding the Start Day of the previous month
-    console.log(startDay);
     let tempDays = days;
     for (let i = 6; i >= 1; i--) {
         // Last Week
@@ -283,6 +287,11 @@ function goNextMonth() {
 // This function will create a calendar based on the start day and number of days within the month
 function createCalendar() {
 
+    console.log(taskDay);
+    console.log(taskMonth);
+    console.log(taskYear);
+    console.log(taskTitles);
+
     // This for loop controls the rows of the calendar
     for (let i = 1; i <= 6; i++) {
 
@@ -299,8 +308,17 @@ function createCalendar() {
                 
                 // If we want to print, we target the ID using the week and day (row/column)
                 if (startPrinting == true) {
+                    taskIndexDay = taskDay.indexOf(dayToPrint);
                     targetCell = document.querySelector("#c" + i + j);
-                    targetCell.innerHTML = dayToPrint; 
+
+                    console.log(taskIndexDay);
+
+                    if (taskMonth[taskIndexDay] == month && taskYear[taskIndexDay] == year) {
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[taskIndexDay] + "</p></div>";
+                    } else {
+                        targetCell.innerHTML = dayToPrint;
+                    } 
+
                     dayToPrint += 1;
                 }
             }
@@ -311,8 +329,16 @@ function createCalendar() {
 
                 // This checks if we still want to target html elements
                 if (startPrinting == true) {
+                    taskIndexDay = taskDay.indexOf(dayToPrint);
                     targetCell = document.querySelector("#c" + i + j);
-                    targetCell.innerHTML = dayToPrint;
+
+                    console.log(taskIndexDay);
+
+                    if (taskMonth[taskIndexDay] == month && taskYear[taskIndexDay] == year) {
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[taskIndexDay] + "</p></div>";
+                    } else {
+                        targetCell.innerHTML = dayToPrint;
+                    } 
                 }
                 
                 // If we have hit the last day, we check if dayToPrint lines up with the number of days in the month. If it is the same, then we know to stop printing, if not, then we add a day and keep going
@@ -331,8 +357,16 @@ function createCalendar() {
 
                 // This checks if we still want to target html elements
                 if (startPrinting == true) {
+                    taskIndexDay = taskDay.indexOf(dayToPrint);
                     targetCell = document.querySelector("#c" + i + j);
-                    targetCell.innerHTML = dayToPrint;
+
+                    console.log(taskIndexDay);
+
+                    if (taskMonth[taskIndexDay] == month && taskYear[taskIndexDay] == year) {
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[taskIndexDay] + "</p></div>";
+                    } else {
+                        targetCell.innerHTML = dayToPrint;
+                    } 
                 }
                 
                 // If we have hit the last day, we check if dayToPrint lines up with the number of days in the month. If it is the same, then we know to stop printing, if not, then we add a day and keep going
@@ -349,8 +383,16 @@ function createCalendar() {
 
             for (let j = 1; j <= 7; j++) {
                 if (startPrinting == true) {
+                    taskIndexDay = taskDay.indexOf(dayToPrint);
                     targetCell = document.querySelector("#c" + i + j);
-                    targetCell.innerHTML = dayToPrint;
+
+                    console.log(taskIndexDay);
+
+                    if (taskMonth[taskIndexDay] == month && taskYear[taskIndexDay] == year) {
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[taskIndexDay] + "</p></div>";
+                    } else {
+                        targetCell.innerHTML = dayToPrint;
+                    } 
                 }
     
                 if (dayToPrint == days) {
@@ -366,8 +408,17 @@ function createCalendar() {
 
             for (let j = 1; j <= 7; j++) {
                 if (startPrinting == true) {
+                    taskIndex = taskDay.indexOf(dayToPrint);
                     targetCell = document.querySelector("#c" + i + j);
-                    targetCell.innerHTML = dayToPrint;
+
+                    console.log(taskIndex);
+
+                    if (taskMonth[taskIndex] == month && taskYear[taskIndex] == year) {
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[taskIndex] + "</p></div>";
+                    } else {
+                        targetCell.innerHTML = dayToPrint;
+                    } 
+
                     dayToPrint += 1;
                 }
             }
