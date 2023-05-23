@@ -12,6 +12,34 @@
 </head>
 <body>
 
+    <!-- This section contains the Sidebar elements -->
+    <section id="sidebar">
+
+        <div class="sBarBackground"> <!-- Backgroudn of the sidebar-->
+            <div id="sidebarTitle">
+                <h2>Alex's Space</h2>
+            </div>
+    
+            <!-- These divs contain the different pages you can go to on the site -->
+            <div>
+                <button class="sidebarDifferentPageBox">
+                    <a href="/todolist/todolist.html" id="todoLink"> ☑ </a>
+                    <h3>To-Do List</h3>
+                </button>
+            </div>
+                
+            <div>
+                <button class="sidebarDifferentPageBox">
+                    <a href="/calendar/calendar.html" id="todoLink"> 📅 </a>
+                    <h3>Calender</h3>
+                </button>
+            </div>
+    
+        </div>
+
+    </section>
+    <section id="todo">
+
     <div class="container">
         <!-- <h1 class="title">Today's To-do List</h1> -->
         <input type="text" placeholder="Task List " class="todotitle">
@@ -29,6 +57,7 @@
     </div>  
 
     <script src="todolist.js"></script>
+</section>
     
 </body>
 </html>
