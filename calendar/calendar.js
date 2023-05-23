@@ -97,6 +97,19 @@ createCalendar(); // Creates the calendar when the page is first opened
 backMonthArrow.addEventListener("click", goPreviousMonth);
 nextMonthArrow.addEventListener("click", goNextMonth);
 
+// Event listeners for when the previous and next month buttons are hovered
+backMonthArrow.addEventListener("mouseover", function(e){
+    e.target.style.backgroundColor = "rgba(150, 150, 150, 2)";
+});
+nextMonthArrow.addEventListener("mouseover", function(e){
+    e.target.style.backgroundColor = "rgba(150, 150, 150, 2)";
+});
+backMonthArrow.addEventListener("mouseout", function(e){
+    e.target.style.backgroundColor = "transparent";
+});
+nextMonthArrow.addEventListener("mouseout", function(e){
+    e.target.style.backgroundColor = "transparent";
+});
 
 // Event listener for when the user clicks on a calendar cell to create an event
 document.addEventListener("click", function(e){
@@ -105,19 +118,57 @@ document.addEventListener("click", function(e){
     }
 })
 
+// Event Listener for deleting tasks
+document.addEventListener("click", function(e){
+
+    // If you click on an image that has the remove task class, then it will call this if statement
+    if (e.target.classList.contains('removeTask')) {
+        
+        // It will now inspect each cell of the calendar
+        for (let i = 1; i <= 6; i++) {
+            for (let j = 1; j <= 7; j++) {
+                let tempTargetCell = document.querySelector("#c" + i + j);
+                // console.log(tempTargetCell.innerHTML);
+
+                // If the cell being looped through is the same as the cell that contains the task, then it will replace the cell with just the number of the cell
+                if (e.target.parentNode.parentNode == tempTargetCell) { // Contains an error that innerHTML returns null if used
+                    tempDay = (i-1)*7 + (j+1) - startDay;
+                    document.querySelector("#c" + i + j).innerHTML = tempDay;
+                    
+                    // This for loop erases the task from the task arrays
+                    for (let k = 0; k < taskDay.length; k++) {
+
+                        // If the day, month, and year matches, than remove the value at index k
+                        if (taskDay[k] == tempDay) {
+                            if (taskMonth[k] == month && taskYear[k] == year) {
+                                taskDay.splice(k, 1);       // These callings of .splice() will remove 1 value starting from index k
+                                taskMonth.splice(k, 1);
+                                taskYear.splice(k, 1);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+})
+
 
 
 //  =================================== Functions
 
+// Creation of a task
 function taskCreation(day, target) {
-    let taskTitle = prompt("Please enter a title for your task: ");
+    // This prompt asks the user for the title of their task
+    let userTaskTitle = prompt("Please enter a title for your task: ");
 
     taskDay.push(day);
     taskMonth.push(month);
     taskYear.push(year);
-    taskTitles.push(taskTitle);
+    taskTitles.push(userTaskTitle);
 
-    target.innerHTML = day + "<div class='taskBox'><p>" + taskTitle + "</p></div>";
+    // This targets the cell and adds the task title to the cell
+    target.innerHTML = day + "<div class='taskBox'><p>" + userTaskTitle + "</p><img src='images/trash.jpg' class='removeTask'></div>";
 
 }
 
@@ -287,11 +338,6 @@ function goNextMonth() {
 // This function will create a calendar based on the start day and number of days within the month
 function createCalendar() {
 
-    console.log(taskDay);
-    console.log(taskMonth);
-    console.log(taskYear);
-    console.log(taskTitles);
-
     // This for loop controls the rows of the calendar
     for (let i = 1; i <= 6; i++) {
 
@@ -308,13 +354,13 @@ function createCalendar() {
                 
                 // If we want to print, we target the ID using the week and day (row/column)
                 if (startPrinting == true) {
+                    // checkTask checks for any tasks on the specific day that needs to be printed and returns the index of it within the task lists, or returns a negative number if there is no task
                     let checkTask = taskChecking(dayToPrint, month, year, taskDay, taskMonth, taskYear);
                     targetCell = document.querySelector("#c" + i + j);
 
-                    console.log(checkTask);
-
+                    // If there is a task, then print the task description, if not, then just print the number
                     if (checkTask >= 0) {
-                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p></div>";
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p><img src='images/trash.jpg' class='removeTask'></div>";
                     } else {
                         targetCell.innerHTML = dayToPrint;
                     } 
@@ -332,10 +378,8 @@ function createCalendar() {
                     let checkTask = taskChecking(dayToPrint, month, year, taskDay, taskMonth, taskYear);
                     targetCell = document.querySelector("#c" + i + j);
 
-                    console.log(checkTask);
-
                     if (checkTask  >= 0) {
-                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p></div>";
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p><img src='images/trash.jpg' class='removeTask'></div>";
                     } else {
                         targetCell.innerHTML = dayToPrint;
                     } 
@@ -360,10 +404,8 @@ function createCalendar() {
                     let checkTask = taskChecking(dayToPrint, month, year, taskDay, taskMonth, taskYear);
                     targetCell = document.querySelector("#c" + i + j);
 
-                    console.log(checkTask);
-
                     if (checkTask >= 0) {
-                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p></div>";
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p><img src='images/trash.jpg' class='removeTask'></div>";
                     } else {
                         targetCell.innerHTML = dayToPrint;
                     } 
@@ -386,10 +428,8 @@ function createCalendar() {
                     let checkTask = taskChecking(dayToPrint, month, year, taskDay, taskMonth, taskYear);
                     targetCell = document.querySelector("#c" + i + j);
 
-                    console.log(checkTask);
-
                     if (checkTask >= 0) {
-                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p></div>";
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p><img src='images/trash.jpg' class='removeTask'></div>";
                     } else {
                         targetCell.innerHTML = dayToPrint;
                     } 
@@ -410,10 +450,8 @@ function createCalendar() {
                     let checkTask = taskChecking(dayToPrint, month, year, taskDay, taskMonth, taskYear);
                     targetCell = document.querySelector("#c" + i + j);
 
-                    console.log(checkTask);
-
                     if (checkTask >= 0) {
-                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p></div>";
+                        targetCell.innerHTML = dayToPrint + "<div class='taskBox'><p>" + taskTitles[checkTask] + "</p><img src='images/trash.jpg' class='removeTask'></div>";
                     } else {
                         targetCell.innerHTML = dayToPrint;
                     } 
@@ -434,12 +472,14 @@ function createCalendar() {
 // This function will check if the day being printed has an event on it
 function taskChecking(day, month, year, taskDays, taskMonths, taskYears) {
     
+    // Temporary variables
     let tempIndex = -1;
-    let tempIndiciesDay = [];
+    let tempIndiciesDay = [];       // Lists to hold matching day/month/year task values
     let tempIndiciesMonth = [];
     let tempIndiciesYear = [];
     let indexReturn = -5;
 
+    // This loop will continue to look for matching day values to the day parameter through the day array until it can't find any more (it wil then return -1)
     while (true) {
         tempIndex = taskDays.indexOf(day, tempIndex + 1);
         if(tempIndex != -1) {
@@ -451,6 +491,7 @@ function taskChecking(day, month, year, taskDays, taskMonths, taskYears) {
 
     tempIndex = -1;
 
+    // This loop does the same thing but with the month and month array parameters
     while (true) {
         tempIndex = taskMonths.indexOf(month, tempIndex + 1);
         if(tempIndex != -1) {
@@ -462,6 +503,7 @@ function taskChecking(day, month, year, taskDays, taskMonths, taskYears) {
 
     tempIndex = -1;
 
+    // This loop does the same thing but with the year and year array parameters
     while (true) {
         tempIndex = taskYears.indexOf(year, tempIndex + 1);
         if(tempIndex != -1) {
@@ -471,11 +513,13 @@ function taskChecking(day, month, year, taskDays, taskMonths, taskYears) {
         }
     }
 
+    // Then for every value in the temporary day array, it checks if that same value is in the temporary month and year array. If it is in all of them, then we know that there is a task within the global task lists at the index specified by this list.
     for (let i = 0; i < tempIndiciesDay.length; i++) {
         if (tempIndiciesMonth.includes(tempIndiciesDay[i]) && tempIndiciesYear.includes(tempIndiciesDay[i])) {
             indexReturn = tempIndiciesDay[i];
         }
     }
 
+    // It returns the index which it found, or it returns a negative number
     return indexReturn;
 }
