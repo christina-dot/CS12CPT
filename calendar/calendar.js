@@ -1,5 +1,5 @@
 
-// =================================== Global Varibales
+// =================================== Global Variables
 
 let startDay = 2;   // Which day of the week we will start on
 let days = 31;  // Number of days in the specific month
