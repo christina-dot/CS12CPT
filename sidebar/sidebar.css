@@ -1,0 +1,77 @@
+/* This is a selctor which applies these css properties to the entire page */
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'PT Sans', sans-serif;
+}
+
+body {
+    width: 30vw;
+    height: 100vh;
+}
+
+.sBarBackground {
+    background-color: #F6F6F2;
+    height: 100%;
+}
+
+#pageContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+#sidebar {
+    background-color: #c8c8c8;
+    height: 100%;
+    width: 15%;
+    padding: 10px 15px;
+    border: 2px solid grey;
+}
+
+/* The top title for the side bar */
+#sidebarTitle {
+    width: 100%;
+    margin-bottom: 10px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.sBarItem {
+    color: #bfe6ff;
+}
+
+/* Below shows the styling for the box where the itial sidebar item is */
+.sidebarDifferentPageBox {
+    background-color: #bfe6ff;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 16px;
+    padding: 20px;
+    width: 93%;
+    cursor: pointer;
+}
+
+.sidebarDifferentPageBox button {
+    cursor: pointer;
+}
+
+#main {
+    background-color: red;
+    width: 85%;
+    height: 100%;
+}
+
+#todoLink {
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+}

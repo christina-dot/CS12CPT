@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=PT+Sans:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="sidebar.css">
+    <title>Sidebar</title>
+</head>
+<body>
+
+       <!-- This div contains the title of the User's space -->
+    <div class="sBarBackground"> <!-- Backgroudn of the sidebar-->
+        <div id="sidebarTitle">
+            <h2>Alex's Space</h2>
+        </div>
+
+        <!-- These divs contain the different pages you can go to on the site -->
+        <div>
+            <button class="sidebarDifferentPageBox">
+                <a href="/pages/todolist/todolist.html" id="todoLink"> ☑ </a>
+                <h3>To-Do List</h3>
+            </button>
+        </div>
+            <!-- <div class="todoExpand">
+                <input type="text" placeholder="+ To-do List" class="input">
+                <h4>Work</h4>
+                <h4>Groceries</h4>
+                <h4>School</h4>
+            </div> -->
+        
+        <div>
+            <button class="sidebarDifferentPageBox">
+                <a href="/pages/todolist/todolist.html" id="todoLink"> 📅 </a>
+                <h3>Calender</h3>
+            </button>
+        </div>
+
+    </div>
+
+    <script src="sidebar.js"></script>
+    
+</body>
+</html>
