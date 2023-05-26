@@ -2,6 +2,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-family: 'PT Sans', sans-serif;
 }
 
 body {
@@ -26,8 +27,16 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
+}
+
+#sidebarTop, #sidebarBottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 #sidebarTitle {
@@ -36,7 +45,6 @@ body {
     padding-top: 20px;
     text-align: center;
     font-size: 18px;
-    font-family: 'PT Sans', sans-serif;
 }
 
 .sidebarDifferentPageBox {
@@ -54,7 +62,6 @@ body {
     cursor: pointer;
     width: 100%;
     height: 100%;
-    font-family: 'PT Sans', sans-serif;
 }
 
 #todoLink {
@@ -93,13 +100,11 @@ a:visited {
 
 #calendarMonthBox {
     font-size: 26px;
-    font-family: 'PT Sans', sans-serif;
 }
 
 #calendarYearBox {
     font-size: 16px;
     margin-right: 50px;
-    font-family: 'PT Sans', sans-serif;
 }
 
 #calendarContainer {
@@ -115,10 +120,6 @@ table {
 table, th, td {
     border: 1.5px black solid;
     border-collapse: collapse;
-}
-
-th, td {
-    font-family: 'PT Sans', sans-serif;
 }
 
 tr {
@@ -144,7 +145,7 @@ td {
     margin-left: 5%;
     margin-right: 5%;
     padding: 2.5px;
-    background-color: #efe6ff;
+    background-color: #bfe6ff;
     border: 0.5px solid black;
     font-size: 12px;
     display: flex;

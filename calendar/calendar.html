@@ -17,31 +17,45 @@
         <section id="sidebar">
 
             <div class="sBarBackground"> <!-- Background of the sidebar-->
-                <div id="sidebarTitle">
-                    <h2>Alex's Space</h2>
+                <div id="sidebarTop">
+                    <div id="sidebarTitle">
+                        <h2>Alex's Space</h2>
+                    </div>
+            
+                    <!-- These divs contain the different pages you can go to on the site -->
+                    <div class="sidebarDifferentPageBox">
+                        <a href="/todolist/todolist.html" class="todoLink"> 
+                            <button class="sidebarDifferentPageLink">
+                                ☑ 
+                                <h3>To-Do List</h3>
+                            </button>
+                        </a>
+                    </div>
+                        
+                    <div class="sidebarDifferentPageBox">
+                        <a href="/calendar/calendar.html" class="todoLink"> 
+                            <button class="sidebarDifferentPageLink">
+                                📅
+                                <h3>Calender</h3>
+                            </button>
+                        </a>
+                    </div>
                 </div>
-        
-                <!-- These divs contain the different pages you can go to on the site -->
-                <div class="sidebarDifferentPageBox">
-                    <a href="/todolist/todolist.html" id="todoLink"> 
-                        <button class="sidebarDifferentPageLink">
-                            ☑ 
-                            <h3>To-Do List</h3>
-                        </button>
-                    </a>
+
+                <div id="sidebarBottom">
+                    <div class="sidebarDifferentPageBox">
+                        <a href="/help_screen/help_screen.html" class="todoLink"> 
+                            <button class="sidebarDifferentPageLink">
+                                ❓ 
+                                <h3>Help</h3>
+                            </button>
+                        </a>
+                    </div>
                 </div>
-                    
-                <div class="sidebarDifferentPageBox">
-                    <a href="/calendar/calendar.html" id="todoLink"> 
-                        <button class="sidebarDifferentPageLink">
-                            📅
-                            <h3>Calender</h3>
-                        </button>
-                    </a>
-                </div>
+                
         
             </div>
-
+    
         </section>
 
         <!-- This section conatins all the information for this specific page (the calendar information) -->
