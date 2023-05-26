@@ -1,4 +1,3 @@
-
 //This code starts a function that takes the value inputed in the "Enter a Task" and defines it as "input"
 function addTodo() {
     const input = document.getElementById("todoInput");
@@ -46,6 +45,3 @@ function addTodo() {
         input.value = "";
     }
 }
-
-
-

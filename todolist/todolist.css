@@ -52,7 +52,7 @@ body {
     height: 100%;
 }
 
-#todoLink {
+/* #todoLink {
     text-decoration: none;
 }
 
@@ -123,5 +123,64 @@ a:visited {
 
 .todo span {
     cursor: pointer;
+} */
+
+#todo {
+    width: 85%;
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    background-color: #F6F6F3;
+}
+
+#inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#todoListTitle {
+    text-align: center;
+    width: 100%;
+}
+
+.todo-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.todo-text.completed {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.button {
+    background-color: #bfe6ff;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.button.delete {
+    background-color: #FF3B30;
 }
 

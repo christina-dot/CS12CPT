@@ -46,17 +46,15 @@
 
     <div class="container">
         <!-- <h1 class="title">Today's To-do List</h1> -->
-        <input type="text" placeholder="Task List " class="todotitle">
-        <form class="form">
-            <input type="text" placeholder="To do" class="input">
-            <button class="btn">Add</button>
-        </form>
-        <div class="lists">
-            <div class="todo">
-                <span>✔</span>
-                <p>Item</p>
-                <span>❌</span> 
+        <div class="container">
+            <div id="inputContainer">
+                <h1 id="todoListTitle">Todo List</h1>
+                <div id="formContainer">
+                    <input type="text" id="todoInput" placeholder="Enter a task">
+                    <button class="button" onclick="addTodo()">Add</button>
+                </div>
             </div>
+            <ul id="todoList" class="todo-list"></ul>
         </div>
     </div>  
 

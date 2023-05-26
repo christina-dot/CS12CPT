@@ -45,8 +45,3 @@ function addTodo() {
         input.value = "";
     }
 }
-
-
-
-
-
