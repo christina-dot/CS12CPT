@@ -1,0 +1,202 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    font-family: 'PT Sans', sans-serif;
+}
+
+body {
+    width: 100%;
+    background-color: #F6F6F2;
+}
+
+.container {
+    width: 500px;
+    margin: 32px auto;
+}
+
+.container .title {
+    text-align: center;
+}
+
+.container .form {
+    background-color: white;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.container .todotitle {
+    color: black;
+    font-size: 50px;
+    border: none;
+    background-color: #F6F6F2;
+}
+
+.container .todotitle:on-click {
+
+}
+
+.form input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background-color: transparent;
+}
+
+.form .btn {
+    padding: 12px;
+    background-color: #bfe6ff; 
+    color: black;
+    cursor: pointer;
+    border: none;
+}
+
+.lists {
+    box-shadow: 3px 3px 3px; 
+   
+}
+
+.lists .todo {
+    display: flex;
+    align-items: left;
+    justify-content: space-between;
+    background-color: white;
+    margin-top: 8px;
+    padding: 8px;
+    gap: 8px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px #EBECF0;
+}
+
+.todo span {
+    cursor: pointer;
+} */
+
+* {
+    font-family: 'PT Sans', sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    background-color: #F6F6F3;
+}
+
+.todo-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.todo-text.completed {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.button {
+    background-color: #bfe6ff;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.button.delete {
+    background-color: #FF3B30;
+}
+
+/* SIDE BAR */
+
+/* This is a selctor which applies these css properties to the entire page */
+/* body {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'PT Sans', sans-serif;
+} */
+
+body {
+    width: 30vw;
+    height: 100vh;
+}
+
+.sBarBackground {
+    background-color: #F6F6F2;
+    height: 100%;
+}
+
+#pageContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+#sidebar {
+    background-color: #c8c8c8;
+    height: 100%;
+    width: 15%;
+    padding: 10px 15px;
+    border: 2px solid grey;
+}
+
+/* The top title for the side bar */
+#sidebarTitle {
+    width: 100%;
+    margin-bottom: 10px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.sBarItem {
+    color: #bfe6ff;
+}
+
+/* Below shows the styling for the box where the itial sidebar item is */
+.sidebarDifferentPageBox {
+    background-color: #bfe6ff;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    margin-right: 15px;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 16px;
+    padding: 20px;
+    width: 93%;
+    cursor: pointer;
+}
+
+.sidebarDifferentPageBox button {
+    cursor: pointer;
+}
+
+#main {
+    background-color: red;
+    width: 85%;
+    height: 100%;
+}
+
+#todoLink {
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+}
