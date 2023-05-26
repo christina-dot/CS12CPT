@@ -16,17 +16,30 @@
         <!-- This section contains the Sidebar elements -->
         <section id="sidebar">
 
-            <!-- This div contains the title of the User's space -->
-            <div id="sidebarTitle">
-                <h2>Alex's Space</h2>
-            </div>
-
-            <!-- These divs contain the different pages you can go to on the site -->
-            <div class="sidebarDifferentPageBox">
-                <h3>To-Do List</h3>
-            </div>
-            <div class="sidebarDifferentPageBox">
-                <h3>Calendar</h3>
+            <div class="sBarBackground"> <!-- Background of the sidebar-->
+                <div id="sidebarTitle">
+                    <h2>Alex's Space</h2>
+                </div>
+        
+                <!-- These divs contain the different pages you can go to on the site -->
+                <div class="sidebarDifferentPageBox">
+                    <a href="/todolist/todolist.html" id="todoLink"> 
+                        <button class="sidebarDifferentPageLink">
+                            ☑ 
+                            <h3>To-Do List</h3>
+                        </button>
+                    </a>
+                </div>
+                    
+                <div class="sidebarDifferentPageBox">
+                    <a href="/calendar/calendar.html" id="todoLink"> 
+                        <button class="sidebarDifferentPageLink">
+                            📅
+                            <h3>Calender</h3>
+                        </button>
+                    </a>
+                </div>
+        
             </div>
 
         </section>

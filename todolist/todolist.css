@@ -1,12 +1,68 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: 'PT Sans', sans-serif;
 }
 
 body {
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: #F6F6F2;
+    display: flex;
+}
+
+#sidebar {
+    height: 100%;
+    width: 15%;
+    padding: 10px 15px;
+    border: 2px solid grey;
+}
+
+.sBarBackground {
+    background-color: #F6F6F2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sidebarTitle {
+    width: 100%;
+    margin-bottom: 10px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.sidebarDifferentPageBox {
+    width: 93%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.sidebarDifferentPageLink {
+    background-color: #bfe6ff;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 16px;
+    padding: 20px;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+#todoLink {
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+}
+
+#todo {
+    width: 85%;
+    height: 100%;
 }
 
 .container {
@@ -31,10 +87,6 @@ body {
     font-size: 50px;
     border: none;
     background-color: #F6F6F2;
-}
-
-.container .todotitle:on-click {
-
 }
 
 .form input {

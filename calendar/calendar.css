@@ -16,27 +16,53 @@ body {
 }
 
 #sidebar {
-    background-color: #c8c8c8;
     height: 100%;
     width: 15%;
-    padding: 10px 15px;
     border: 2px solid grey;
+}
+
+.sBarBackground {
+    background-color: #F6F6F2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 15px;
 }
 
 #sidebarTitle {
     width: 100%;
     margin-bottom: 10px;
+    padding-top: 20px;
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
+    font-family: 'PT Sans', sans-serif;
 }
 
 .sidebarDifferentPageBox {
-    background-color: #efe6ff;
+    width: 93%;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+.sidebarDifferentPageLink {
+    background-color: #bfe6ff;
     border: 2px solid black;
     text-align: center;
-    font-size: 12px;
+    font-size: 16px;
+    padding: 20px;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    font-family: 'PT Sans', sans-serif;
+}
+
+#todoLink {
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
 }
 
 #main {
