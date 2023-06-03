@@ -176,6 +176,21 @@ a:visited {
 }
 
 .button {
+    background-color: #aacbe2;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* #91BAD6 */
+
+.button:hover {
     background-color: #bfe6ff;
     color: white;
     border: none;
