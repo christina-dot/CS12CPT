@@ -111,7 +111,7 @@ nextMonthArrow.addEventListener("mouseout", function(e){
     e.target.style.backgroundColor = "transparent";
 });
 
-// Event listener for when the user clicks on a calendar cell to create an event
+// Event listener for when the user clicks on a calendar cell to create a task
 document.addEventListener("click", function(e){
     if (e.target.innerHTML >= 1 && e.target.innerHTML <= days){
         taskCreation(parseInt(e.target.innerHTML), e.target);
@@ -159,8 +159,21 @@ document.addEventListener("click", function(e){
 
 // Creation of a task
 function taskCreation(day, target) {
-    // This prompt asks the user for the title of their task
-    let userTaskTitle = prompt("Please enter a title for your task: ");
+    
+    let userTaskTitle;
+    
+    // This while loop keeps prompting the user to enter a title until they enter in some characters
+    while (true) {
+        // This prompt asks the user for the title of their task
+        userTaskTitle = prompt("Please enter a title for your task: ");
+
+        if (userTaskTitle == null || userTaskTitle == "") {
+            continue;
+        } else {
+            break;
+        }
+
+    }
 
     taskDay.push(day);
     taskMonth.push(month);
@@ -469,7 +482,7 @@ function createCalendar() {
 }
 
 
-// This function will check if the day being printed has an event on it
+// This function will check if the day being printed has a task on it
 function taskChecking(day, month, year, taskDays, taskMonths, taskYears) {
     
     // Temporary variables
